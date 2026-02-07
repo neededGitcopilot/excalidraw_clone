@@ -1,11 +1,5 @@
-generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
-}
-
-datasource db {
-  provider = "postgresql"
-}
+So Schema Dosen't Add Shapes It just ADD Box
+Element is for all shape and there is Type key that define what going into that box
 
 model Element {
   id String @id @default(uuid())
