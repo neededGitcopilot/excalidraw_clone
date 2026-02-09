@@ -7,6 +7,14 @@ datasource db {
   provider = "postgresql"
 }
 
+model User { 
+  id Int @id @default(autoincrement())
+  name String?
+  password String
+  email String @unique
+  room Room[]
+}
+
 model Element {
   id String @id @default(uuid())
   type Shapes
@@ -14,6 +22,12 @@ model Element {
   y Int
   width Int
   height Int
+}
+
+model Room {
+  id String @id @default(uuid())
+  adminId Int
+  admin User @relation(fields: [adminId], references: [id])
 }
 
 enum Shapes { 
