@@ -43,6 +43,7 @@ model Element {
 
 model Room {
   id String @id @default(uuid())
+  name String
   adminId Int
   admin User @relation(fields: [adminId], references: [id])
 }
