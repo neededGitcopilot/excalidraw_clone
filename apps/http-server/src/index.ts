@@ -1,10 +1,12 @@
 import express from 'express';
 import cors from 'cors';
+import authRouter from './modules/auth/auth.routes.js';
 
 const app = express();
 app.use(express.json());
 app.use(cors());
-// app.use()
+app.use('/auth', authRouter);
+// app.use('/auth', authRouter)
 app.get('/health', (req, res) => {
   res.status(200).json({
     message: 'health is okay',

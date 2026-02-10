@@ -6,12 +6,12 @@ import { RequestHandler } from 'express';
 import prismaClient from '@repo/db/client';
 import { successResponse } from '@repo/backend-common/response';
 import { ApiError } from '@repo/backend-common/errors';
-import {TokenType} from '@repo/db/enum';
+import Enum from '@repo/db/enum';
 import { generateToken, hashToken } from '@repo/backend-common/utils/token';
 import { env } from '@repo/backend-common/config';
 
 import { AuthSerializer } from './auth.serializer.js';
-import { loginSchema, registerSchema, verifyEmailSchema } from './auth.schema.js';
+import { loginSchema, registerSchema, verifyEmailSchema } from '@repo/common/schema';
 
 /**
  * LOGIN
@@ -71,7 +71,7 @@ export const registerUser: RequestHandler = asyncHandler(async (req, res) => {
       token: {
         create: {
           token: hashedToken,
-          type: TokenType.EMAIL_VERIFY,
+          type: Enum.TokenType.EMAIL_VERIFY,
           expiresAt: new Date(Date.now() + 1000 * 60 * 60),
         },
       },
