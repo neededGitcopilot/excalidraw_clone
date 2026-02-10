@@ -9,10 +9,27 @@ datasource db {
 
 model User { 
   id Int @id @default(autoincrement())
-  name String?
-  password String
+  username String?
+  password String?
   email String @unique
   room Room[]
+  token       AuthToken[]
+  isActive    Boolean          @default(false)
+}
+
+model AuthToken {
+  id        Int       @id @default(autoincrement())
+  token     String    @unique
+  type      TokenType
+  expiresAt DateTime
+  used      Boolean   @default(false)
+  userId    Int
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  CreatedAt DateTime  @default(now())
+
+  @@index([userId])
+  @@index([token, type])
+  @@index([expiresAt])
 }
 
 model Element {
@@ -28,6 +45,13 @@ model Room {
   id String @id @default(uuid())
   adminId Int
   admin User @relation(fields: [adminId], references: [id])
+}
+
+enum TokenType {
+  PASSWORD_SETUP
+  PASSWORD_RESET
+  EMAIL_VERIFY
+  PROJECT_INVITE
 }
 
 enum Shapes { 
