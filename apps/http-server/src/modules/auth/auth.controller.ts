@@ -8,7 +8,7 @@ import { successResponse } from '@repo/backend-common/response';
 import { ApiError } from '@repo/backend-common/errors';
 import Enum from '@repo/db/enum';
 import { generateToken, hashToken } from '@repo/backend-common/utils/token';
-import { env } from '@repo/backend-common/config';
+import { env } from '@repo/common/config';
 
 import { AuthSerializer } from './auth.serializer.js';
 import { loginSchema, registerSchema, verifyEmailSchema } from '@repo/common/schema';

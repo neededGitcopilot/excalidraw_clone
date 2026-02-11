@@ -176,6 +176,9 @@ importers:
       '@repo/backend-common':
         specifier: workspace:*
         version: link:../backend-common
+      '@repo/common':
+        specifier: workspace:*
+        version: link:../common
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config

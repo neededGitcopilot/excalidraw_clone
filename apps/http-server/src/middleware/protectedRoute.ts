@@ -1,7 +1,7 @@
 import jwt, { decode, JwtPayload } from 'jsonwebtoken';
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import asyncHandler from 'express-async-handler';
-import { env } from '@repo/backend-common/config';
+import { env } from '@repo/common/config';
 
 export const protectedRouter: RequestHandler = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
